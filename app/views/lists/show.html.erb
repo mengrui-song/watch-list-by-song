@@ -1,0 +1,19 @@
+<h1><%= @list.name.capitalize %></h1>
+<%= link_to "Lists", lists_path %>
+<div class="btn-ghost">
+<%= link_to "Add movie", new_list_bookmark_path(@list) %>
+</div>
+
+
+<div class="movie-cards">
+  <% @movies.each do |movie| %>
+    <div class="movie-card">
+        <img src="<%= movie.poster_url %>" alt="<%= movie.title %>">
+        <div class="movie-card-infos">
+          <div>
+            <h2><%= movie.title %></h2>
+            <h2 class="movie-card-rating"><%= movie.rating %></h2>
+          </div>
+            <p><%= movie.overview %></p>
+      </div>
+  <% end %>

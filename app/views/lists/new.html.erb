@@ -1,0 +1,8 @@
+<h1>Lists#new</h1>
+<p>Find me in app/views/lists/new.html.erb</p>
+
+<%= simple_form_for(@list) do |f| %>
+  <%= f.input :name %>
+  <%= f.input :image_url %>
+  <%= f.submit %>
+<% end %>
