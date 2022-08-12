@@ -11,7 +11,10 @@
   <div class="list-cards">
     <% @lists.each do |list| %>
       <div class="list-card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= list.image_url %>)">
-      <h2><%= link_to list.name, list_path(list) %></h2>
+
+      <%= link_to list_path(list) do%>
+      <%= list.name %>
+      <% end %>
       </div>
     <% end %>
   </div>
