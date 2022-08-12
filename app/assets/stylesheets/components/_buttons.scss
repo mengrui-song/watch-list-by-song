@@ -4,12 +4,14 @@
   padding: 8px 24px;
   border-radius: 50px;
   font-weight: lighter;
-  opacity: 0.6;
-  transition: opacity 0.3s ease;
+  opacity: 1;
+  transition: 0.3s ease;
 
   &:hover {
-    color: red;
-    opacity: 0;
+    font-size: large;
+    transition: 0.3s ease;
+    color: white;
+    opacity: .6;
   }
 }
 

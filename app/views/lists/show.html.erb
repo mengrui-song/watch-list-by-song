@@ -1,7 +1,45 @@
-<h1><%= @list.name.capitalize %></h1>
-<%= link_to "Lists", lists_path %>
-<div class="btn-ghost">
-<%= link_to "Add movie", new_list_bookmark_path(@list) %>
+<div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
+  <div class="container-fluid">
+    <%= link_to lists_path, class: "navbar-brand" do %>
+      <%= image_tag "logo1.png" %>
+    <% end %>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto">
+        <%# if user_signed_in? %>
+          <li class="nav-item active">
+            <%= link_to "Add movies", new_list_bookmark_path(@list), class: "nav-link" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "Delete", "#", class: "nav-link" %>
+          </li>
+          <li class="nav-item dropdown">
+            <%#= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+              <%= link_to "Action", "#", class: "dropdown-item" %>
+              <%= link_to "Another action", "#", class: "dropdown-item" %>
+              <%= link_to "Log out", "#", class: "dropdown-item", data: {turbo_method: :delete} %>
+            </div>
+          </li>
+        <%# else %>
+          <!--li class="nav-item"-->
+            <%#= link_to "Login", new_user_session_path, class: "nav-link" %>
+          <!--/li-->
+        <%# end %>
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+<div class="banner" style="background-image: url(<%= @list.photo.attached? ? cl_image_path(@list.photo.key) : @list.image_url %>);">
+  <div class="container">
+    <h1><%= @list.name %></h1>
+  </div>
 </div>
 
 
@@ -14,6 +52,7 @@
             <h2><%= movie.title %></h2>
             <h2 class="movie-card-rating"><%= movie.rating %></h2>
           </div>
-            <p><%= movie.overview %></p>
-      </div>
-  <% end %>
+        </div>
+    </div>
+    <% end %>
+</div>
