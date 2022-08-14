@@ -1,9 +1,16 @@
-<h1>Lists#new</h1>
-<p>Find me in app/views/lists/new.html.erb</p>
+<div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
+  <div class="container-fluid">
+    <%= link_to lists_path, class: "navbar-brand" do %>
+      <%= image_tag "logo1.png" %>
+    <% end %>
+  </div>
+</div>
 
-<%= simple_form_for(@list) do |f| %>
-  <%= f.input :name %>
-  <%= f.input :photo, as: :file %>
-  <%= f.input :image_url %>
-  <%= f.submit %>
-<% end %>
+
+<div class="container text-white mt-3 p-3 bg-dark">
+  <%= simple_form_for(@list) do |f| %>
+    <%= f.input :name %>
+    <%= f.input :photo, as: :file %>
+    <%= f.submit 'Add List', class: "btn btn-outline-light" %>
+  <% end %>
+</div>

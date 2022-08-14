@@ -12,10 +12,7 @@
       <ul class="navbar-nav me-auto">
         <%# if user_signed_in? %>
           <li class="nav-item active">
-            <%= link_to "Add list", new_list_path, class: "nav-link" %>
-          </li>
-          <li class="nav-item">
-            <%= link_to "Delete", "#", class: "nav-link" %>
+            <%= link_to image_tag("plus.png"), new_list_path, class: "btn-round" %>
           </li>
           <li class="nav-item dropdown">
             <%#= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
@@ -48,7 +45,9 @@
   <div class="list-cards">
     <% @lists.each do |list| %>
       <div class="list-card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= list.photo.attached? ? cl_image_path(list.photo.key) : list.image_url %>)">
-
+      <%= link_to list_path(list), data: {turbo_method: :delete, turbo_confirm: "Are you sure to delete #{list.name}" }, class: "btn-round right-corner" do %>
+        <i class="fa-solid fa-circle-minus"></i>
+      <% end %>
       <%= list.name %>
       <%= link_to '', list_path(list), class: 'link-card' %>
       </div>
