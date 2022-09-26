@@ -10,8 +10,8 @@ class BookmarksController < ApplicationController
 
   def create
     @list = List.find(params[:list_id])
-		if Movie.find_by(title: params[:bookmark][:movie])
-			@movie = Movie.find_by(title: params[:bookmark][:movie])
+		if Movie.where('lower(title) LIKE ?', params[:bookmark][:movie]).first
+			@movie = Movie.where('lower(title) LIKE ?', params[:bookmark][:movie]).first
 		else
 			@movie = fetch_movie(params[:bookmark][:movie])
       @movie.save
