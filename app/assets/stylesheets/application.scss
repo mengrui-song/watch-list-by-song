@@ -13,4 +13,8 @@
 
 a {
 	color: white;
+	&:hover {
+		color: white;
+		opacity: .7;
+	}
 }
