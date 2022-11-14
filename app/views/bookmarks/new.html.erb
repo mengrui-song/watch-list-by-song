@@ -10,8 +10,13 @@
 <div class="container text-white mt-3 p-3 bg-dark">
   <%= simple_form_for [@list, @bookmark] do |f| %>
     <%= f.input :comment  %>
-    <%= f.input :movie %>
+    <%= f.input :movie, input_html: {class: "search-movie"}%>
     <%# <%= f.association :movie, collection: @movies %>
+
     <%= f.submit 'Add Movie', class: "btn btn-outline-light" %>
   <% end %>
+</div>
+
+<div class = "test">hello</div>
+<div class="movie-cards display-fetched-movies">
 </div>
