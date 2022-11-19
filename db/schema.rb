@@ -57,6 +57,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_15_012841) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "image_url"
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_lists_on_user_id"
   end
 
   create_table "movies", force: :cascade do |t|
@@ -76,9 +78,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_15_012841) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "lists_id"
     t.index ["email"], name: "index_users_on_email", unique: true
-    t.index ["lists_id"], name: "index_users_on_lists_id"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
@@ -86,5 +86,5 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_15_012841) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "bookmarks", "lists"
   add_foreign_key "bookmarks", "movies"
-  add_foreign_key "users", "lists", column: "lists_id"
+  add_foreign_key "lists", "users"
 end

@@ -1,20 +1,22 @@
 class ListsController < ApplicationController
   def index
-    # @lists = List.all
-    @lists = current_user.lists
+    @lists = policy_scope(List) # policy is for index and I dont need aurhorize because of policy.
   end
 
   def show
     @list = List.find(params[:id])
     @movies = @list.movies
+    authorize @list
   end
 
   def new
     @list = List.new
+    authorize @list
   end
 
   def create
     @list = List.new(list_params)
+    @list.user = current_user
     if @list.save
       redirect_to lists_path
     else
@@ -23,6 +25,7 @@ class ListsController < ApplicationController
   end
 
   def destroy
+    authorize @list
     @list = List.find(params[:id])
     @list.destroy
     redirect_to lists_path, status: :see_other

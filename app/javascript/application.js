@@ -8,7 +8,7 @@ const display = document.querySelector(".display-fetched-movies");
 const movies = [];
 
 console.log("hello world");
-
+console.log(input);
 
 input.addEventListener("keyup", fetchMovie);
 
@@ -47,10 +47,14 @@ function selectMovie() {
       console.log("inspect movies array");
       movies.forEach(movie => {
         if (movie["title"] === e.target.alt) {
-          const xhr = new XMLHttpRequest();
-          xhr.open("POST", "", true);
-          xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
-          xhr.send(JSON.stringify(movie));
+          console.log(input.value);
+          input.value = JSON.stringify(movie);
+          // I want to post the movie to controller,but it doesn't work well...
+          // const url = window.location.href
+          // const xhr = new XMLHttpRequest();
+          // xhr.open("POST", url, true);
+          // xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
+          // xhr.send(JSON.stringify(movie));
         }
       })
     }, false);
