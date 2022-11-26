@@ -5,25 +5,18 @@ class BookmarksController < ApplicationController
   def new
     @list = List.find(params[:list_id])
     @bookmark = Bookmark.new
-    @movie = Movie.new
+    # @movie = Movie.new
+    @bookmark.build_movie
     authorize @bookmark
     # @movies = Movie.order(title: :asc)
   end
 
   def create
     @list = List.find(params[:list_id])
-    movie_hash = JSON.parse params[:bookmark][:movie]
-    if Movie.find_by(movie_hash)
-      @movie = Movie.find_by(movie_hash)
-		# if Movie.where('lower(title) LIKE ?', movie_hash[:title]).first
-		# 	@movie = Movie.where('lower(title) LIKE ?', movie_hash[:title]).first
-		else
-			# @movie = fetch_movie(params[:bookmark][:movie])
-      @movie = Movie.new(movie_hash)
-      @movie.save
-		end
+    bookmark_params
+    @movie = save_movie(bookmark_params[:movie].to_hash)
     @comment = params[:bookmark][:comment]
-    @bookmark = Bookmark.new(movie: @movie, comment: @comment)
+    @bookmark = Bookmark.new(comment: @comment, movie: @movie)
     @bookmark.list = @list
     authorize @bookmark
     if @bookmark.save
@@ -35,26 +28,24 @@ class BookmarksController < ApplicationController
 
   def destroy
     @bookmark = Bookmark.find(params[:id])
+    authorize @bookmark
     @bookmark.destroy
     redirect_to lists_path
   end
 
   private
 
-  def bookmark_params
-    params.require(:bookmark).permit(:comment, :movie_id)
+  def save_movie(movie_hash)
+    if Movie.find_by(movie_hash)
+      movie = Movie.find_by(movie_hash)
+    else
+      movie = Movie.new(movie_hash)
+      movie.save
+    end
+    movie
   end
 
-	# def fetch_movie(movie_name)
-  #   url = "https://api.themoviedb.org/3/search/movie?api_key=b04a4d29fa7cbdec4d7960abf964d46f&language=en-US&query=#{movie_name}&page=1&include_adult=false"
-  #   response = JSON.parse(URI.open(url).read)
-  #   movie_hash = response['results'][0]
-  #   @movie = Movie.new(
-  #     title: movie_hash['title'],
-  #     overview: movie_hash['overview'],
-  #     poster_url: "https://image.tmdb.org/t/p/w500#{movie_hash['poster_path']}",
-  #     rating: movie_hash['vote_average']
-  #   )
-	# end
-
+  def bookmark_params
+    params.require(:bookmark).permit(:comment, movie: %i[title overview rating poster_url])
+  end
 end

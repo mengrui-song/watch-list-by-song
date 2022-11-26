@@ -5,7 +5,6 @@ class BookmarkPolicy < ApplicationPolicy
       # scope.all
       scope.where(user: user)
     end
-
   end
 
   def index?
@@ -26,7 +25,7 @@ class BookmarkPolicy < ApplicationPolicy
     true
   end
 
-  def destroy
-    record.user == user
+  def destroy?
+    true
   end
 end

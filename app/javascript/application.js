@@ -3,14 +3,16 @@ import "@hotwired/turbo-rails"
 import "./controllers"
 import "bootstrap"
 
-const input = document.querySelector(".search-movie");
+const movieTitle = document.querySelector(".movie-title");
+const movieOverview = document.querySelector(".movie-overview");
+const movieRating = document.querySelector(".movie-rating");
+const moviePoster = document.querySelector(".movie-poster");
 const display = document.querySelector(".display-fetched-movies");
 const movies = [];
 
 console.log("hello world");
-console.log(input);
 
-input.addEventListener("keyup", fetchMovie);
+movieTitle.addEventListener("keyup", fetchMovie);
 
 function createMovieInfo(movie) {
   const movieInfo = {
@@ -44,17 +46,12 @@ function selectMovie() {
     console.log(cards[i]);
     cards[i].addEventListener('click', function (e) {
       // e.target.alt
-      console.log("inspect movies array");
       movies.forEach(movie => {
         if (movie["title"] === e.target.alt) {
-          console.log(input.value);
-          input.value = JSON.stringify(movie);
-          // I want to post the movie to controller,but it doesn't work well...
-          // const url = window.location.href
-          // const xhr = new XMLHttpRequest();
-          // xhr.open("POST", url, true);
-          // xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
-          // xhr.send(JSON.stringify(movie));
+          movieTitle.value = movie["title"];
+          movieOverview.value = movie["overview"];
+          movieRating.value = movie["rating"];
+          moviePoster.value = movie["poster_url"];
         }
       })
     }, false);
@@ -65,7 +62,7 @@ function fetchMovie(e) {
   while (display.firstChild) {
     display.removeChild(display.firstChild);
   }
-  const url = `https://api.themoviedb.org/3/search/movie?api_key=b04a4d29fa7cbdec4d7960abf964d46f&language=en-US&query=${input.value}&page=1&include_adult=false`
+  const url = `https://api.themoviedb.org/3/search/movie?api_key=b04a4d29fa7cbdec4d7960abf964d46f&language=en-US&query=${movieTitle.value}&page=1&include_adult=false`
   fetch(url)
     .then((response) => response.json())
     .then((data) =>
