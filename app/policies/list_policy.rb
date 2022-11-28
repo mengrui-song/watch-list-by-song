@@ -26,7 +26,7 @@ class ListPolicy < ApplicationPolicy
     true
   end
 
-  def destroy
-    record.user == user
+  def destroy?
+    true
   end
 end

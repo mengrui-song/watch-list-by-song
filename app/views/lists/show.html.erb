@@ -1,20 +1,4 @@
-<div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
-  <div class="container-fluid">
-    <%= link_to lists_path, class: "navbar-brand" do %>
-      <%= image_tag "logo1.png" %>
-    <% end %>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto">
-        <li class="nav-item ">
-          <%= link_to image_tag("plus.png"), new_list_bookmark_path(@list), class: "btn-round" %>
-        </li>
-      </ul>
-    </div>
-  </div>
-</div>
+<%= render "shared/navbar", list: @list%>
 <div class="banner" style="background-image: url(<%= @list.photo.attached? ? cl_image_path(@list.photo.key) : @list.image_url %>);">
   <div class="container">
     <h1><%= @list.name %></h1>
@@ -35,4 +19,5 @@
       </div>
     </div>
   <% end %>
+  <%= link_to "+", new_list_bookmark_path(@list), class: "movie-card text-primary" %>
 </div>

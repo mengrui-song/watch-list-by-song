@@ -16,6 +16,7 @@ class ListsController < ApplicationController
 
   def create
     @list = List.new(list_params)
+    authorize @list
     @list.user = current_user
     if @list.save
       redirect_to lists_path
@@ -25,8 +26,8 @@ class ListsController < ApplicationController
   end
 
   def destroy
-    authorize @list
     @list = List.find(params[:id])
+    authorize @list
     @list.destroy
     redirect_to lists_path, status: :see_other
 
