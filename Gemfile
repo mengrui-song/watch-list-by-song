@@ -75,3 +75,4 @@ gem "dotenv-rails", group: [:development, :test]
 gem "cloudinary"
 gem "devise"
 gem "pundit"
+# gem "webpacker" 

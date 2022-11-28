@@ -1,3 +1,7 @@
+<% content_for :head do %>
+  <!-- header content specific to this payment page -->
+  <%= javascript_include_tag "search_movie.js", "data-turbo-track": "reload", defer: true %>
+<% end %>
 <%= render "shared/navbar"%>
 <div class="container text-white mt-3 p-3 bg-dark">
   <%= simple_form_for [@list, @bookmark] do |f| %>
