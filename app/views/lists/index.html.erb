@@ -1,9 +1,9 @@
 <%= render "shared/navbar" %>
 <div class="banner" style="background-image: url('<%= asset_path('banner.jpeg')%>');">
   <div class="container">
-    <h1>WATCH LISTS</h1>
+    <%# <h1>WATCH LISTS</h1> %>
     <p><span data-controller="typed-js"></span> </p>
-    <%= link_to "Add new list", new_list_path, class: "btn btn-ghost" %>
+    <%#= link_to "Add new list", new_list_path, class: "btn btn-ghost" %>
   </div>
 </div>
 <div class="list-cards">
@@ -15,5 +15,8 @@
       <%= list.name %>
       <%= link_to '', list_path(list), class: 'link-card' %>
     </div>
+  <% end %>
+  <%= link_to new_list_path, class: "list-card d-flex align-items-center justify-content-center" do %>
+    <p class="text-primary">+ Add list</p>
   <% end %>
 </div>

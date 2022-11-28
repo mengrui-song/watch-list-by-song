@@ -19,5 +19,7 @@
       </div>
     </div>
   <% end %>
-  <%= link_to "+", new_list_bookmark_path(@list), class: "movie-card text-primary" %>
+  <%= link_to new_list_bookmark_path(@list), class: "movie-card d-flex align-items-center justify-content-center" do %>
+    <p class="text-primary">+ Add movie</p>
+  <% end %>
 </div>
