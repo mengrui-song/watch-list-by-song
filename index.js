@@ -1,0 +1,1 @@
+import "./app/builds/search_movies.js"
