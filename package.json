@@ -11,8 +11,8 @@
     "webpack": "^4.46.0",
     "webpack-cli": "^3.3.12"
   },
-  
-  "main": "./app/assets/builds/search_movie.js",
+
+  "main": "app/assets/builds/search_movie.js",
   "scripts": {
     "build": "webpack --config webpack.config.js"
   },
