@@ -12,7 +12,7 @@
       <%= movie_form.input :rating, label: false, input_html: {class: "movie-rating d-none"} %>
       <%= movie_form.input :poster_url, label: false, input_html: {class: "movie-poster d-none"} %>
     <% end %>
-    <%= f.submit 'Add Movie', class: "btn btn-outline-light" %>
+    <%= f.submit 'Add Movie', class: "btn btn-outline-light add-movie", style: "display: none;" %>
   <% end %>
 </div>
 <div class="movie-cards display-fetched-movies">
