@@ -12,7 +12,7 @@
     "webpack-cli": "^3.3.12"
   },
   "scripts": {
-    "main": "app/assets/builds/search_movie.js",
+    "main": "./app/assets/builds/search_movie.js",
     "build": "webpack --config webpack.config.js"
   },
   "devDependencies": {
