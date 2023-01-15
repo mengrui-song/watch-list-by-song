@@ -19,11 +19,7 @@ class BookmarksController < ApplicationController
     @bookmark = Bookmark.new(comment: @comment, movie: @movie)
     @bookmark.list = @list
     authorize @bookmark
-    if @bookmark.save
-      redirect_to list_path(@list)
-    else
-      render :new, status: :unprocessable_entity
-    end
+    @bookmark.save ? (redirect_to list_path(@list)) : (render :new, status: :unprocessable_entity)
   end
 
   def destroy
