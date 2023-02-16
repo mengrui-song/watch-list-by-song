@@ -58,6 +58,7 @@ function selectMovie() {
 }
 
 function fetchMovie(e) {
+  console.log(e);
   while (display.firstChild) {
     display.removeChild(display.firstChild);
   }
@@ -65,7 +66,10 @@ function fetchMovie(e) {
   fetch(url)
     .then((response) => response.json())
     .then((data) =>
+    {
+      console.log(data);
       data.results.forEach(generateCard, this.movie)
+    }
     )
     .then(selectMovie)
 }

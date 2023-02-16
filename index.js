@@ -1,1 +1,0 @@
-import "app/builds/search_movie.js"
