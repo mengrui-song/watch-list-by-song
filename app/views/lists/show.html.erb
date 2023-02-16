@@ -13,7 +13,8 @@
           <h2 class="movie-card-rating"><%= movie.rating%></h2>
           <h2><%= movie.title %></h2>
         </div>
-        <%= link_to bookmark_path(movie.bookmark_ids), data: {turbo_method: :delete, turbo_confirm: "Are you sure to delete #{movie.title}" }, class: "btn-round right-corner" do %>
+        <% bookmark = Bookmark.find_by(list: @list, movie: movie) %>
+        <%= link_to  bookmark_path(bookmark), data: {turbo_method: :delete, turbo_confirm: "Are you sure to delete #{movie.title}" }, class: "btn-round right-corner" do %>
           <i class="fa-solid fa-circle-minus"></i>
         <% end %>
       </div>

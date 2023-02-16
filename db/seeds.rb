@@ -24,4 +24,11 @@
 #   )
 # end
 
+
 # puts "#{Movie.count} movies have been created!"
+User.destroy_all
+User.create!(
+  email: "summerrock1017@gmail.com",
+  password: "123123"
+)
+puts "Create a user."

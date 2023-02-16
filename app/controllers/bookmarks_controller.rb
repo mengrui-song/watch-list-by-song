@@ -5,15 +5,16 @@ class BookmarksController < ApplicationController
   def new
     @list = List.find(params[:list_id])
     @bookmark = Bookmark.new
+    @bookmark.bookmarkable_type = 'Movie'
     # @movie = Movie.new
-    @bookmark.build_movie
+    # @bookmark.build_movie
     authorize @bookmark
     # @movies = Movie.order(title: :asc)
   end
 
   def create
     @list = List.find(params[:list_id])
-    bookmark_params
+    # bookmark_params
     @movie = save_movie(bookmark_params[:movie].to_hash)
     @comment = params[:bookmark][:comment]
     @bookmark = Bookmark.new(comment: @comment, movie: @movie)

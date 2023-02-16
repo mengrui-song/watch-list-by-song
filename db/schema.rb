@@ -44,10 +44,13 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_15_012841) do
 
   create_table "bookmarks", force: :cascade do |t|
     t.string "comment"
+    t.string "bookmarkable_type"
+    t.bigint "bookmarkable_id"
     t.bigint "movie_id", null: false
     t.bigint "list_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["bookmarkable_type", "bookmarkable_id"], name: "index_bookmarks_on_bookmarkable"
     t.index ["list_id"], name: "index_bookmarks_on_list_id"
     t.index ["movie_id"], name: "index_bookmarks_on_movie_id"
   end
@@ -68,6 +71,13 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_15_012841) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "poster_url"
+  end
+
+  create_table "people", force: :cascade do |t|
+    t.string "name"
+    t.string "department"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|

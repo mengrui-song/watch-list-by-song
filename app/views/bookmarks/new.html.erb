@@ -6,7 +6,7 @@
 <div class="container text-white mt-3 p-3 bg-dark">
   <%= simple_form_for [@list, @bookmark] do |f| %>
     <%#= f.input :comment  %>
-    <%= f.simple_fields_for @bookmark.movie, Movie.new do |movie_form| %>
+    <%= f.simple_fields_for Movie.new do |movie_form| %>
       <%= movie_form.input :title, input_html: {class: "movie-title"} %>
       <%= movie_form.input :overview, label: false, input_html: {class: "movie-overview d-none"} %>
       <%= movie_form.input :rating, label: false, input_html: {class: "movie-rating d-none"} %>

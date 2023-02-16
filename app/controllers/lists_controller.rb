@@ -5,6 +5,7 @@ class ListsController < ApplicationController
 
   def show
     @list = List.find(params[:id])
+    @bookmarks = @list.bookmarks
     @movies = @list.movies
     authorize @list
   end
@@ -39,4 +40,3 @@ class ListsController < ApplicationController
     params.require(:list).permit(:name, :image_url, :photo)
   end
 end
-
