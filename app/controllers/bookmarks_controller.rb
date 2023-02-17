@@ -5,19 +5,24 @@ class BookmarksController < ApplicationController
   def new
     @list = List.find(params[:list_id])
     @bookmark = Bookmark.new
-    @bookmark.bookmarkable_type = 'Movie'
-    # @movie = Movie.new
-    # @bookmark.build_movie
+    if @list.list_type == 'movie'
+      @bookmark.bookmarkable_type = 'Movie'
+    else
+      @bookmark.bookmarkable_type = 'Person'
+    end
     authorize @bookmark
-    # @movies = Movie.order(title: :asc)
   end
 
   def create
     @list = List.find(params[:list_id])
-    # bookmark_params
-    @movie = save_movie(bookmark_params[:movie].to_hash)
     @comment = params[:bookmark][:comment]
-    @bookmark = Bookmark.new(comment: @comment, movie: @movie)
+    if @list.list_type == 'movie'
+      @movie = save_movie(bookmark_params[:movie].to_hash)
+      @bookmark = Bookmark.new(comment: @comment, movie: @movie)
+    else
+      @person = save_person(bookmark_params[:person].to_hash)
+      @bookmark = Bookmark.new(comment: @comment, person: @person)
+    end
     @bookmark.list = @list
     authorize @bookmark
     @bookmark.save ? (redirect_to list_path(@list)) : (render :new, status: :unprocessable_entity)
@@ -42,7 +47,17 @@ class BookmarksController < ApplicationController
     movie
   end
 
+  def save_person(person_hash)
+    if Person.find_by(person_hash)
+      person = Person.find_by(person_hash)
+    else
+      person = Person.new(person_hash)
+      person.save
+    end
+    person
+  end
+
   def bookmark_params
-    params.require(:bookmark).permit(:comment, movie: %i[title overview rating poster_url])
+    params.require(:bookmark).permit(:comment, movie: %i[title overview rating poster_url], person: %i[name department profile_url])
   end
 end

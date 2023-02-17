@@ -3,6 +3,7 @@
   <%= simple_form_for(@list) do |f| %>
     <%= f.input :name %>
     <%= f.input :photo, as: :file %>
+    <%= f.input :list_type, collection: ['movie', 'person'] %>
     <%= f.submit 'Add List', class: "btn btn-outline-light" %>
   <% end %>
 </div>

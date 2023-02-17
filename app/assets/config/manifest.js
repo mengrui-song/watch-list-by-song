@@ -2,3 +2,5 @@
 //= link_directory ../stylesheets .css
 //= link_tree ../builds
 //= link application.css
+//= link search_movie.js
+//= link search_person.js

@@ -1,19 +1,10 @@
-<% content_for :head do %>
-  <!-- header content specific to this payment page -->
-  <%= javascript_include_tag "search_movie.js", "data-turbo-track": "reload", defer: true %>
-<% end %>
+
 <%= render "shared/navbar"%>
 <div class="container text-white mt-3 p-3 bg-dark">
-  <%= simple_form_for [@list, @bookmark] do |f| %>
-    <%#= f.input :comment  %>
-    <%= f.simple_fields_for Movie.new do |movie_form| %>
-      <%= movie_form.input :title, input_html: {class: "movie-title"} %>
-      <%= movie_form.input :overview, label: false, input_html: {class: "movie-overview d-none"} %>
-      <%= movie_form.input :rating, label: false, input_html: {class: "movie-rating d-none"} %>
-      <%= movie_form.input :poster_url, label: false, input_html: {class: "movie-poster d-none"} %>
-    <% end %>
-    <%= f.submit 'Add Movie', class: "btn btn-outline-light add-movie", style: "display: none;" %>
+  <% if @list.list_type == 'movie' %>
+    <%= render "form_for_movie", list: @list, bookmark:@bookmark %>
+  <% else %>
+    <%= render "form_for_person", list: @list, bookmark:@bookmark %>
   <% end %>
 </div>
-<div class="movie-cards display-fetched-movies">
-</div>
+

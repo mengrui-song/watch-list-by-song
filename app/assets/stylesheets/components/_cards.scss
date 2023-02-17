@@ -39,20 +39,20 @@
 }
 
 
-.movie-card{
+.person-card, .movie-card{
   box-shadow: 0px 0px 15px  rgba(0, 0, 0, .2);
   position: relative;
   height:270px;
 }
 
-.movie-card > img{
+.person-card > img, .movie-card > img{
   height: 200px;
   width: 100%;
   object-fit: contain;
   object-position: 50% 50%;
 }
 
-.movie-card-infos{
+.person-card-infos, .movie-card-infos{
   padding: 16px;
   display: flex;
   justify-content: space-between;
@@ -60,13 +60,13 @@
 
 }
 
-.movie-card-infos h2{
+.person-card-infos h2, .movie-card-infos h2{
   margin: 0 ;
   font-size: 16px;
   font-weight: bold;
 }
 
-.movie-card-infos p{
+.person-card-infos p, .movie-card-infos p{
   font-size: 12px;
   margin: 0;
   opacity: .7;
@@ -84,7 +84,7 @@
 }
 
 
-.movie-cards {
+.person-cards, .movie-cards {
   padding: 16px;
   margin-bottom: 0;
   display: grid;

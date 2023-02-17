@@ -1,0 +1,14 @@
+<%= simple_form_for [list, bookmark] do |f| %>
+    <%#= f.input :comment  %>
+    <%= f.simple_fields_for Person.new do |person_form| %>
+      <%= person_form.input :name, input_html: {class: "person-name"} %>
+      <%= person_form.input :department, label: false, input_html: {class: "person-department d-none"} %>
+      <%= person_form.input :profile_url, label: false, input_html: {class: "person-profile d-none"} %>
+    <% end %>
+    <%= f.submit 'Add', class: "btn btn-outline-light add-person", style: "display: none;" %>
+  <% end %>
+
+  <div class="person-cards display-fetched-people">
+  </div>
+
+  <%= javascript_include_tag 'search_person' %>

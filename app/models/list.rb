@@ -6,6 +6,7 @@ class List < ApplicationRecord
   belongs_to :user #list.user
 
   validates :name, presence: true
+  validates :list_type, presence: true
   validates :name, uniqueness: true
 
   has_one_attached :photo

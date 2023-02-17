@@ -33,14 +33,16 @@ user = User.create!(
   email: "summerrock1017@gmail.com",
   password: "123123"
 )
-puts "Create a user."
+puts "A user created."
 
 mylist = List.create!(
   name: "2023",
+  list_type: "movie",
   image_url: "https://picsum.photos/200/300",
   user: user
 )
 puts "A list created!"
+
 Movie.all.each do |movie|
   Bookmark.create!(movie: movie, list: mylist)
 end

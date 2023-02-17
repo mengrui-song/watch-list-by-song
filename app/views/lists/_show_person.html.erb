@@ -1,0 +1,19 @@
+<div class="person-cards">
+  <% people.each do |person| %>
+    <div class="person-card">
+      <img src="<%= person.profile_url %>" alt="<%= person.name %>">
+      <div class="person-card-infos">
+        <div>
+          <h2><%= person.name %></h2>
+        </div>
+        <% bookmark = Bookmark.find_by(list: list, person: person) %>
+        <%= link_to bookmark_path(bookmark), data: {turbo_method: :delete, turbo_confirm: "Are you sure to delete #{person.name}" }, class: "btn-round right-corner" do %>
+          <i class="fa-solid fa-circle-minus"></i>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+  <%= link_to new_list_bookmark_path(list), class: "person-card d-flex align-items-center justify-content-center" do %>
+    <p class="text-primary">+ Add someone</p>
+  <% end %>
+</div>

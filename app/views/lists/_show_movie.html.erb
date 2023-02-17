@@ -1,0 +1,20 @@
+<div class="movie-cards">
+  <% movies.each do |movie| %>
+    <div class="movie-card">
+      <img src="<%= movie.poster_url %>" alt="<%= movie.title %>">
+      <div class="movie-card-infos">
+        <div>
+          <h2 class="movie-card-rating"><%= movie.rating%></h2>
+          <h2><%= movie.title %></h2>
+        </div>
+        <% bookmark = Bookmark.find_by(list: list, movie: movie) %>
+        <%= link_to bookmark_path(bookmark), data: {turbo_method: :delete, turbo_confirm: "Are you sure to delete #{movie.title}" }, class: "btn-round right-corner" do %>
+          <i class="fa-solid fa-circle-minus"></i>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+  <%= link_to new_list_bookmark_path(list), class: "movie-card d-flex align-items-center justify-content-center" do %>
+    <p class="text-primary">+ Add movie</p>
+  <% end %>
+</div>

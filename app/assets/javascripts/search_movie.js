@@ -1,3 +1,4 @@
+console.log("movie");
 
 const movieTitle = document.querySelector(".movie-title");
 const movieOverview = document.querySelector(".movie-overview");
@@ -7,8 +8,7 @@ const display = document.querySelector(".display-fetched-movies");
 const submitButton = document.querySelector(".add-movie");
 const movies = [];
 
-console.log("This is search_movie.js");
-
+console.log(display);
 function createMovieInfo(movie) {
   const movieInfo = {
     title: movie.title,
@@ -59,14 +59,13 @@ function selectMovie() {
 
 function fetchMovie(e) {
   console.log(e);
-  while (display.firstChild) {
-    display.removeChild(display.firstChild);
-  }
+  // while (display.firstChild) {
+  //   display.removeChild(display.firstChild);
+  // }
   const url = `https://api.themoviedb.org/3/search/movie?api_key=b04a4d29fa7cbdec4d7960abf964d46f&language=en-US&query=${movieTitle.value}&page=1&include_adult=false`
   fetch(url)
     .then((response) => response.json())
-    .then((data) =>
-    {
+    .then((data) => {
       console.log(data);
       data.results.forEach(generateCard, this.movie)
     }

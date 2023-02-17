@@ -46,17 +46,20 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_15_012841) do
     t.string "comment"
     t.string "bookmarkable_type"
     t.bigint "bookmarkable_id"
-    t.bigint "movie_id", null: false
+    t.bigint "movie_id"
+    t.bigint "person_id"
     t.bigint "list_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["bookmarkable_type", "bookmarkable_id"], name: "index_bookmarks_on_bookmarkable"
     t.index ["list_id"], name: "index_bookmarks_on_list_id"
     t.index ["movie_id"], name: "index_bookmarks_on_movie_id"
+    t.index ["person_id"], name: "index_bookmarks_on_person_id"
   end
 
   create_table "lists", force: :cascade do |t|
     t.string "name"
+    t.string "list_type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "image_url"
@@ -76,6 +79,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_15_012841) do
   create_table "people", force: :cascade do |t|
     t.string "name"
     t.string "department"
+    t.string "profile_url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -96,5 +100,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_15_012841) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "bookmarks", "lists"
   add_foreign_key "bookmarks", "movies"
+  add_foreign_key "bookmarks", "people"
   add_foreign_key "lists", "users"
 end
