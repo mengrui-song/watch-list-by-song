@@ -44,4 +44,4 @@ puts "A list created!"
 Movie.all.each do |movie|
   Bookmark.create!(movie: movie, list: mylist)
 end
-puts "added movies to my list."
+puts "added movies(bookmarks) to my list."
