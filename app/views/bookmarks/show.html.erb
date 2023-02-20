@@ -1,1 +1,13 @@
-<h1>BOOKMARK SHOW</h1>
+<% person = @bookmark.person %>
+<h1><%= person.name %></h1>
+<p class="person-id"><%= person.tmdb_person_id %> </p>
+<h1>Cast</h1>
+<div class="movie-cards cast">
+</div>
+
+<h1>Crew</h1>
+<div class="movie-cards crew">
+</div>
+
+
+<%= javascript_include_tag 'search_person_movies' %>

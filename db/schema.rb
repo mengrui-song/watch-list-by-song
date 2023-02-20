@@ -77,6 +77,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_15_012841) do
   end
 
   create_table "people", force: :cascade do |t|
+    t.string "tmdb_person_id"
     t.string "name"
     t.string "department"
     t.string "profile_url"

@@ -1,16 +1,18 @@
 console.log('Hello I am in search_person');
 
-let personName = document.querySelector(".person-name");
-const personDepartment = document.querySelector(".person-department");
-const personProfile = document.querySelector(".person-profile");
-const displayPeople = document.querySelector(".display-fetched-people");
-const submitPerson = document.querySelector(".add-person");
-const people = [];
+personName = document.querySelector(".person-name");
+personDepartment = document.querySelector(".person-department");
+personProfile = document.querySelector(".person-profile");
+personId = document.querySelector(".person-id");
+displayPeople = document.querySelector(".display-fetched-people");
+submitPerson = document.querySelector(".add-person");
+people = [];
 
 
 function createPersonInfo(person) {
   const personInfo = {
     name: person.name,
+    id: person.id,
     profile_url: `https://image.tmdb.org/t/p/w500${person.profile_path}`,
     department: person.known_for_department
   }
@@ -43,9 +45,10 @@ function selectPerson() {
       const selectedPersonIndex = e.target.getAttribute('data-index')
       const selectedPerson = people[selectedPersonIndex]
       console.log(selectedPerson);
-      personName.value = selectedPerson["name"];
+      // personName.value = selectedPerson["name"];
       personDepartment.value = selectedPerson["department"];
       personProfile.value = selectedPerson["profile_url"];
+      personId.value = selectedPerson["id"];
       submitPerson.click();
 
     }, false);
@@ -57,7 +60,7 @@ function fetchPerson(e) {
   while (displayPeople.firstChild) {
     displayPeople.removeChild(displayPeople.firstChild);
   }
-  const url = `https://api.themoviedb.org/3/search/person?api_key=b04a4d29fa7cbdec4d7960abf964d46f&language=en-US&query=${personName.value}&page=1&include_adult=false`
+  const url = `https://api.themoviedb.org/3/search/person?api_key=b04a4d29fa7cbdec4d7960abf964d46f&language=en-US&query=${e.target.value}&page=1&include_adult=false`
   fetch(url)
     .then((response) => response.json())
     .then((data) => {

@@ -1,12 +1,12 @@
 console.log("hello, I am in search_movie");
 
-const movieTitle = document.querySelector(".movie-title");
-const movieOverview = document.querySelector(".movie-overview");
-const movieRating = document.querySelector(".movie-rating");
-const moviePoster = document.querySelector(".movie-poster");
-const displayMovie = document.querySelector(".display-fetched-movies");
-const submitMovie = document.querySelector(".add-movie");
-const movies = [];
+movieTitle = document.querySelector(".movie-title");
+movieOverview = document.querySelector(".movie-overview");
+movieRating = document.querySelector(".movie-rating");
+moviePoster = document.querySelector(".movie-poster");
+displayMovie = document.querySelector(".display-fetched-movies");
+submitMovie = document.querySelector(".add-movie");
+movies = [];
 
 function createMovieInfo(movie) {
   const movieInfo = {

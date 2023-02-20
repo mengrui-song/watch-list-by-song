@@ -64,6 +64,7 @@ class BookmarksController < ApplicationController
   end
 
   def bookmark_params
-    params.require(:bookmark).permit(:comment, movie: %i[title overview rating poster_url], person: %i[name department profile_url])
+    params.require(:bookmark).permit(:comment, movie: %i[title overview rating poster_url],
+                                    person: %i[name tmdb_person_id department profile_url])
   end
 end
