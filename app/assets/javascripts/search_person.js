@@ -1,10 +1,10 @@
-console.log('person');
+console.log('Hello I am in search_person');
 
-const personName = document.querySelector(".person-name");
+let personName = document.querySelector(".person-name");
 const personDepartment = document.querySelector(".person-department");
 const personProfile = document.querySelector(".person-profile");
-const display = document.querySelector(".display-fetched-people");
-const submitButton = document.querySelector(".add-person");
+const displayPeople = document.querySelector(".display-fetched-people");
+const submitPerson = document.querySelector(".add-person");
 const people = [];
 
 
@@ -30,7 +30,7 @@ function generateCard(person) {
         </div>
       </div>
     </div>`
-  display.insertAdjacentHTML("beforeend", personCard);
+  displayPeople.insertAdjacentHTML("beforeend", personCard);
 }
 
 function selectPerson() {
@@ -46,7 +46,7 @@ function selectPerson() {
       personName.value = selectedPerson["name"];
       personDepartment.value = selectedPerson["department"];
       personProfile.value = selectedPerson["profile_url"];
-      submitButton.click();
+      submitPerson.click();
 
     }, false);
   }
@@ -54,8 +54,8 @@ function selectPerson() {
 
 function fetchPerson(e) {
   console.log(e);
-  while (display.firstChild) {
-    display.removeChild(display.firstChild);
+  while (displayPeople.firstChild) {
+    displayPeople.removeChild(displayPeople.firstChild);
   }
   const url = `https://api.themoviedb.org/3/search/person?api_key=b04a4d29fa7cbdec4d7960abf964d46f&language=en-US&query=${personName.value}&page=1&include_adult=false`
   fetch(url)

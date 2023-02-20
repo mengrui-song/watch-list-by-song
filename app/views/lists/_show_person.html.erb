@@ -1,12 +1,11 @@
 <div class="person-cards">
   <% people.each do |person| %>
+    <% bookmark = Bookmark.find_by(list: list, person: person) %>
     <div class="person-card">
+      <%= link_to '', list_bookmark_path(@list, bookmark), class: 'link-card'  %>
       <img src="<%= person.profile_url %>" alt="<%= person.name %>">
       <div class="person-card-infos">
-        <div>
-          <h2><%= person.name %></h2>
-        </div>
-        <% bookmark = Bookmark.find_by(list: list, person: person) %>
+        <h2><%= person.name %></h2>
         <%= link_to bookmark_path(bookmark), data: {turbo_method: :delete, turbo_confirm: "Are you sure to delete #{person.name}" }, class: "btn-round right-corner" do %>
           <i class="fa-solid fa-circle-minus"></i>
         <% end %>

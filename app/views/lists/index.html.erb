@@ -12,7 +12,7 @@
       <%= link_to list_path(list), data: {turbo_method: :delete, turbo_confirm: "Are you sure to delete #{list.name}" }, class: "btn-round right-corner" do %>
         <i class="fa-solid fa-circle-minus"></i>
       <% end %>
-      <%= list.name %>
+      <p><%= list.name %></p>
       <%= link_to '', list_path(list), class: 'link-card' %>
     </div>
   <% end %>

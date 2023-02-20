@@ -3,6 +3,7 @@ require 'json'
 
 class BookmarksController < ApplicationController
   def new
+    # @tmdb_api_key = ENV['TMDB_API_KEY']
     @list = List.find(params[:list_id])
     @bookmark = Bookmark.new
     if @list.list_type == 'movie'
@@ -26,6 +27,11 @@ class BookmarksController < ApplicationController
     @bookmark.list = @list
     authorize @bookmark
     @bookmark.save ? (redirect_to list_path(@list)) : (render :new, status: :unprocessable_entity)
+  end
+
+  def show
+    @bookmark = Bookmark.find(params[:id])
+    authorize @bookmark
   end
 
   def destroy

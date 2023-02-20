@@ -1,14 +1,13 @@
-console.log("movie");
+console.log("hello, I am in search_movie");
 
 const movieTitle = document.querySelector(".movie-title");
 const movieOverview = document.querySelector(".movie-overview");
 const movieRating = document.querySelector(".movie-rating");
 const moviePoster = document.querySelector(".movie-poster");
-const display = document.querySelector(".display-fetched-movies");
-const submitButton = document.querySelector(".add-movie");
+const displayMovie = document.querySelector(".display-fetched-movies");
+const submitMovie = document.querySelector(".add-movie");
 const movies = [];
 
-console.log(display);
 function createMovieInfo(movie) {
   const movieInfo = {
     title: movie.title,
@@ -33,7 +32,7 @@ function generateCard(movie) {
         </div>
       </div>
     </div>`
-  display.insertAdjacentHTML("beforeend", movieCard);
+  displayMovie.insertAdjacentHTML("beforeend", movieCard);
 }
 
 function selectMovie() {
@@ -51,7 +50,7 @@ function selectMovie() {
       movieOverview.value = selectedMovie["overview"];
       movieRating.value = selectedMovie["rating"];
       moviePoster.value = selectedMovie["poster_url"];
-      submitButton.click();
+      submitMovie.click();
 
     }, false);
   }
@@ -59,9 +58,9 @@ function selectMovie() {
 
 function fetchMovie(e) {
   console.log(e);
-  // while (display.firstChild) {
-  //   display.removeChild(display.firstChild);
-  // }
+  while (displayMovie.firstChild) {
+    displayMovie.removeChild(displayMovie.firstChild);
+  }
   const url = `https://api.themoviedb.org/3/search/movie?api_key=b04a4d29fa7cbdec4d7960abf964d46f&language=en-US&query=${movieTitle.value}&page=1&include_adult=false`
   fetch(url)
     .then((response) => response.json())

@@ -14,7 +14,7 @@ class BookmarkPolicy < ApplicationPolicy
   end
 
   def show?
-    record.user == user
+    record.list.user == user
   end
 
   def new?
