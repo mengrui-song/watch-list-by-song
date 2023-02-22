@@ -14,18 +14,23 @@ class BookmarkPolicy < ApplicationPolicy
   end
 
   def show?
-    record.list.user == user
+    user_is_owner?
   end
 
   def new?
-    true
+    user_is_owner?
   end
 
   def create?
-    true
+    user_is_owner?
   end
 
   def destroy?
-    true
+    user_is_owner?
+  end
+
+  private
+  def user_is_owner?
+    record.list.user == user
   end
 end

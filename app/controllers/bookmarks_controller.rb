@@ -6,6 +6,7 @@ class BookmarksController < ApplicationController
     # @tmdb_api_key = ENV['TMDB_API_KEY']
     @list = List.find(params[:list_id])
     @bookmark = Bookmark.new
+    @bookmark.list = @list
     if @list.list_type == 'movie'
       @bookmark.bookmarkable_type = 'Movie'
     else

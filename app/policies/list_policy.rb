@@ -2,7 +2,9 @@ class ListPolicy < ApplicationPolicy
   class Scope < Scope
     # NOTE: Be explicit about which records you allow access to!
     def resolve
-      # scope.all
+      # scope means List
+      # user means current user
+      # scope.all -> List.all
       scope.where(user: user)
     end
 
@@ -15,7 +17,7 @@ class ListPolicy < ApplicationPolicy
   end
 
   def show?
-    record.user == user
+    user_is_owner?
   end
 
   def new?
@@ -27,6 +29,18 @@ class ListPolicy < ApplicationPolicy
   end
 
   def destroy?
-    true
+    user_is_owner?
+  end
+
+  private
+  def user_is_owner?
+    # record is the instance
+    record.user == user
   end
 end
+
+# in the view
+# I can use
+# if policy(@list).edit?
+#   show some edit button
+# end
