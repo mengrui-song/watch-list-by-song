@@ -14,11 +14,14 @@ Rails.application.routes.draw do
       root 'devise/sessions#new', as: :unauthenticated_root
     end
   end
+
   resources :lists, only: %i[index show new create destroy] do
     resources :bookmarks, only: %i[new create show] do
       resources :movies, only: [:create]
     end
   end
+
+  resources :people, only: [:show]
 
   resources :bookmarks, only: [:destroy]
 

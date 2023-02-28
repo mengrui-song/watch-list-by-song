@@ -75,4 +75,5 @@ gem "dotenv-rails", group: [:development, :test]
 gem "cloudinary"
 gem "devise"
 gem "pundit"
+gem 'omniauth-google-oauth2'
 # gem "webpacker"
