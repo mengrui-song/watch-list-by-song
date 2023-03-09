@@ -15,7 +15,9 @@ console.log(personId.innerText);
       data.cast.forEach(generateCastCard, this.movie);
       data.crew.forEach(generateCrewCard, this.movie);
     }
-    )
+  ).catch((error) => {
+      console.error(error);
+  })
 
     function createMovieInfo(movie) {
       console.log(movie);

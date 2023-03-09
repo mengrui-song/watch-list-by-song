@@ -1,1 +1,7 @@
 <h1>This is show page for a person</h1>
+<h3>Movies as crew</h3>
+<div class="movie-cards">
+<% @movies_as_crew.each do |movie| %>
+<%= render "shared/movie_card", movie: movie %>
+<% end %>
+</div>
