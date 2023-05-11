@@ -37,10 +37,10 @@ class BookmarksController < ApplicationController
     @bookmark.save ? (redirect_to list_path(@list)) : (render :new, status: :unprocessable_entity)
   end
 
-  def show
-    @bookmark = Bookmark.find(params[:id])
-    authorize @bookmark
-  end
+  # def show
+  #   @bookmark = Bookmark.find(params[:id])
+  #   authorize @bookmark
+  # end
 
   def destroy
     @bookmark = Bookmark.find(params[:id])

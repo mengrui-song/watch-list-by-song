@@ -68,6 +68,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_06_025328) do
   end
 
   create_table "movie_crews", force: :cascade do |t|
+    t.string "job_type"
     t.bigint "movie_id", null: false
     t.bigint "person_id", null: false
     t.datetime "created_at", null: false

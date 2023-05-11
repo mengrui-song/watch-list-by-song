@@ -13,19 +13,19 @@ User.destroy_all
 require 'open-uri'
 # List.destroy_all
 
-# the Le Wagon copy of the API
-url = 'http://tmdb.lewagon.com/movie/top_rated'
-response = JSON.parse(URI.open(url).read)
+# # the Le Wagon copy of the API
+# url = 'http://tmdb.lewagon.com/movie/top_rated'
+# response = JSON.parse(URI.open(url).read)
 
-response['results'].each do |movie_hash|
-  # create an instance with the hash
-  Movie.create!(
-    title: movie_hash['title'],
-    overview: movie_hash['overview'],
-    poster_url: 'https://image.tmdb.org/t/p/w500' + movie_hash['poster_path'],
-    rating: movie_hash['vote_average']
-  )
-end
+# response['results'].each do |movie_hash|
+#   # create an instance with the hash
+#   Movie.create!(
+#     title: movie_hash['title'],
+#     overview: movie_hash['overview'],
+#     poster_url: 'https://image.tmdb.org/t/p/w500' + movie_hash['poster_path'],
+#     rating: movie_hash['vote_average']
+#   )
+# end
 
 
 puts "#{Movie.count} movies have been created!"
@@ -33,7 +33,7 @@ user = User.create!(
   email: "test@gmail.com",
   password: "123123"
 )
-puts "A user created."
+puts "Demo user created."
 
 mylist = List.create!(
   name: "2023",
@@ -43,7 +43,7 @@ mylist = List.create!(
 )
 puts "A list created!"
 
-Movie.all.each do |movie|
-  Bookmark.create!(movie: movie, list: mylist)
-end
-puts "added movies(bookmarks) to my list."
+# Movie.all.each do |movie|
+#   Bookmark.create!(movie: movie, list: mylist)
+# end
+# puts "added movies(bookmarks) to my list."
