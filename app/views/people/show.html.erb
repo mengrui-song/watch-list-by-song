@@ -5,3 +5,9 @@
 <%= render "shared/movie_card", movie: movie %>
 <% end %>
 </div>
+<h3>Movies as cast</h3>
+<div class="movie-cards">
+<% @movies_as_cast.each do |movie| %>
+  <%= render "shared/movie_card", movie: movie %>
+<% end %>
+</div>
