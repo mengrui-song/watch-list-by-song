@@ -30,7 +30,7 @@ end
 
 puts "#{Movie.count} movies have been created!"
 user = User.create!(
-  email: "summerrock1017@gmail.com",
+  email: "test@gmail.com",
   password: "123123"
 )
 puts "A user created."
