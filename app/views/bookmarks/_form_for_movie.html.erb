@@ -1,14 +1,22 @@
-<%= simple_form_for [list, bookmark] do |f| %>
-    <%#= f.input :comment  %>
-    <%= f.simple_fields_for Movie.new do |movie_form| %>
-      <%= movie_form.input :title, input_html: {class: "movie-title"} %>
-      <%= movie_form.input :overview, label: false, input_html: {class: "movie-overview d-none"} %>
-      <%= movie_form.input :rating, label: false, input_html: {class: "movie-rating d-none"} %>
-      <%= movie_form.input :poster_url, label: false, input_html: {class: "movie-poster d-none"} %>
-    <% end %>
-    <%= f.submit 'Add', class: "btn btn-outline-light add-movie", style: "display: none;" %>
-<% end %>
-  <div class="movie-cards display-fetched-movies">
-  </div>
+<% if list %>
+  <%= simple_form_for [list, bookmark] do |f| %>
+      <%#= f.input :comment  %>
+      <%= f.simple_fields_for Movie.new do |movie_form| %>
+        <%= movie_form.input :title, input_html: {class: "movie-title"} %>
+        <%= movie_form.input :overview, label: false, input_html: {class: "movie-overview d-none"} %>
+        <%= movie_form.input :rating, label: false, input_html: {class: "movie-rating d-none"} %>
+        <%= movie_form.input :poster_url, label: false, input_html: {class: "movie-poster d-none"} %>
+      <% end %>
+      <%= f.submit 'Add', class: "btn btn-outline-light add-movie", style: "display: none;" %>
+  <% end %>
+    <div class="movie-cards display-fetched-movies">
+    </div>
 
-  <%= javascript_include_tag 'search_movie' %>
+    <%= javascript_include_tag 'search_movie' %>
+<% elsif movie %>
+  <%= simple_form_for [movie, bookmark] do |f| %>
+      <%#= f.input :comment  %>
+      <%= f.association :list, collection: List.where(list_type: 'movie').where.not(id: movie.lists).order(:name), include_blank: false, input_html: { class: '' } %>
+      <%= f.submit 'Add', class: "btn btn-outline-light add-movie", style: "display: none;" %>
+  <% end %>
+<% end %>

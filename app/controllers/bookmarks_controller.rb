@@ -2,30 +2,37 @@ require 'open-uri'
 require 'json'
 
 class BookmarksController < ApplicationController
+  before_action :find_list, only: %i[new create]
+  before_action :find_movie, only: %i[new create]
+
   def new
-    # @tmdb_api_key = ENV['TMDB_API_KEY']
-    @list = List.find(params[:list_id])
     @bookmark = Bookmark.new
     @bookmark.list = @list
-    if @list.list_type == 'movie'
+    if @list
+      @bookmark.bookmarkable_type = @list.list_type == 'movie' ? 'Movie' : 'Person'
+    elsif @movie
       @bookmark.bookmarkable_type = 'Movie'
-    else
-      @bookmark.bookmarkable_type = 'Person'
     end
     authorize @bookmark
   end
 
   def create
-    @list = List.find(params[:list_id])
-    @comment = params[:bookmark][:comment]
-    if @list.list_type == 'movie'
-      @movie = save_movie(bookmark_params[:movie].to_hash)
-      @bookmark = Bookmark.new(comment: @comment, movie: @movie)
-    else
-      @person = save_person(bookmark_params[:person].to_hash)
-      @bookmark = Bookmark.new(comment: @comment, person: @person)
+    @comment = bookmark_params[:comment]
+    if @list
+      case @list.list_type
+      when 'movie'
+        @movie = save_movie(bookmark_params[:movie].to_hash)
+        @bookmark = Bookmark.new(comment: @comment, movie: @movie)
+      when 'person'
+        @person = save_person(bookmark_params[:person].to_hash)
+        @bookmark = Bookmark.new(comment: @comment, person: @person)
+      end
+      @bookmark.list = @list
+    elsif @movie
+      @bookmark = Bookmark.new(bookmark_params)
+      @bookmark.movie = @movie
+      @list = @bookmark.list
     end
-    @bookmark.list = @list
     authorize @bookmark
     @bookmark.save ? (redirect_to list_path(@list)) : (render :new, status: :unprocessable_entity)
   end
@@ -43,6 +50,14 @@ class BookmarksController < ApplicationController
   end
 
   private
+
+  def find_list
+    @list = List.find(params[:list_id]) if params[:list_id]
+  end
+
+  def find_movie
+    @movie = Movie.find(params[:movie_id]) if params[:movie_id]
+  end
 
   def save_movie(movie_hash)
     if Movie.find_by(movie_hash)
@@ -65,7 +80,7 @@ class BookmarksController < ApplicationController
   end
 
   def bookmark_params
-    params.require(:bookmark).permit(:comment, movie: %i[title overview rating poster_url],
+    params.require(:bookmark).permit(:comment, :list_id, movie: %i[title overview rating poster_url],
                                     person: %i[name tmdb_person_id department profile_url])
   end
 end

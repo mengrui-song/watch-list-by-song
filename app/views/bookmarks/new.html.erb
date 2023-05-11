@@ -1,9 +1,9 @@
 
 <%= render "shared/navbar"%>
 <div class="container text-white mt-3 p-3 bg-dark">
-  <% if @list.list_type == 'movie' %>
-    <%= render "form_for_movie", list: @list, bookmark:@bookmark %>
-  <% else %>
+  <% if @movie || @list.list_type == 'movie' %>
+    <%= render "form_for_movie", list: @list, bookmark: @bookmark, movie: @movie %>
+  <% elsif @list.list_type == 'person' %>
     <%= render "form_for_person", list: @list, bookmark:@bookmark %>
   <% end %>
 </div>

@@ -21,9 +21,12 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :movies, only: [] do
+    resources :bookmarks, only: %i[new create]
+  end
+
   resources :people, only: [:show]
 
   resources :bookmarks, only: [:destroy]
 
-  # get 'my_lists', to 'pages#my_lists', as: :my_lists
 end

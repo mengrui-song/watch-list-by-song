@@ -18,11 +18,11 @@ class BookmarkPolicy < ApplicationPolicy
   end
 
   def new?
-    user_is_owner?
+    true
   end
 
   def create?
-    user_is_owner?
+    true
   end
 
   def destroy?

@@ -6,5 +6,7 @@
       <h2><%= movie.title %></h2>
     </div>
   </div>
-
+  <%= link_to new_movie_bookmark_path(movie), class: "btn-round right-corner" do %>
+    <i class="fa-solid fa-circle-plus"></i>
+  <% end %>
 </div>
