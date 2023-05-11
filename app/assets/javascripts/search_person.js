@@ -45,7 +45,7 @@ function selectPerson() {
       const selectedPersonIndex = e.target.getAttribute('data-index')
       const selectedPerson = people[selectedPersonIndex]
       console.log(selectedPerson);
-      // personName.value = selectedPerson["name"];
+      personName.value = selectedPerson["name"];
       personDepartment.value = selectedPerson["department"];
       personProfile.value = selectedPerson["profile_url"];
       personId.value = selectedPerson["id"];
