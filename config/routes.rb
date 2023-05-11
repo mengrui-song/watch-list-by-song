@@ -23,6 +23,7 @@ Rails.application.routes.draw do
 
   resources :movies, only: [] do
     resources :bookmarks, only: %i[new create]
+    resources :people, only: [:index]
   end
 
   resources :people, only: [:show]
