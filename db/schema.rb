@@ -78,6 +78,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_06_025328) do
   end
 
   create_table "movies", force: :cascade do |t|
+    t.string "tmdb_id"
     t.string "title"
     t.string "overview"
     t.float "rating"

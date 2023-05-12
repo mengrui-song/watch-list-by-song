@@ -27,6 +27,7 @@ Rails.application.routes.draw do
   end
 
   resources :people, only: [:show]
+  resources :movies, only: [:show]
 
   resources :bookmarks, only: [:destroy]
 

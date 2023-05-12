@@ -28,6 +28,7 @@ class PeopleController < ApplicationController
     movies[job].each do |movie_info|
       poster_url = "https://image.tmdb.org/t/p/w500#{movie_info['poster_path']}" if movie_info['poster_path']
       movie_hash = {
+        tmdb_id: movie_info['id'],
         title: movie_info['title'],
         overview: movie_info['overview'],
         poster_url: poster_url,

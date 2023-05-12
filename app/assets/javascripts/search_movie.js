@@ -1,6 +1,7 @@
 console.log("hello, I am in search_movie");
 
 movieTitle = document.querySelector(".movie-title");
+movieTMDBId = document.querySelector(".movie-tmdb-id");
 movieOverview = document.querySelector(".movie-overview");
 movieRating = document.querySelector(".movie-rating");
 moviePoster = document.querySelector(".movie-poster");
@@ -11,6 +12,7 @@ movies = [];
 function createMovieInfo(movie) {
   const movieInfo = {
     title: movie.title,
+    tmdb_id: movie.id,
     poster_url: `https://image.tmdb.org/t/p/w500${movie.poster_path}`,
     overview: movie.overview,
     rating: movie.vote_average
@@ -47,6 +49,9 @@ function selectMovie() {
       const selectedMovie = movies[selectedMovieIndex]
       console.log(selectedMovie);
       movieTitle.value = selectedMovie["title"];
+      console.log(movieTMDBId);
+      movieTMDBId.value = selectedMovie["tmdb_id"];
+      console.log(movieTMDBId);
       movieOverview.value = selectedMovie["overview"];
       movieRating.value = selectedMovie["rating"];
       moviePoster.value = selectedMovie["poster_url"];

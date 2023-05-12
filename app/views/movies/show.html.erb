@@ -1,0 +1,5 @@
+<h1><%=@movie.title%></h1>
+<h1>Cast</h1>
+<%= render 'shared/people_card', people: @people_as_cast %>
+<h1>Crew</h1>
+<%= render 'shared/people_card', people: @people_as_crew %>
