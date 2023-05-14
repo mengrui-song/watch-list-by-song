@@ -21,13 +21,15 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :movies, only: [] do
+  resources :movies, only: [:show] do
     resources :bookmarks, only: %i[new create]
     resources :people, only: [:index]
   end
 
-  resources :people, only: [:show]
-  resources :movies, only: [:show]
+  resources :people, only: [:show] do
+    resources :bookmarks, only: %i[new create]
+  end
+  # resources :movies, only: [:show]
 
   resources :bookmarks, only: [:destroy]
 

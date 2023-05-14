@@ -4,6 +4,7 @@ require 'json'
 class BookmarksController < ApplicationController
   before_action :find_list, only: %i[new create]
   before_action :find_movie, only: %i[new create]
+  before_action :find_person, only: %i[new create]
 
   def new
     @bookmark = Bookmark.new
@@ -12,6 +13,8 @@ class BookmarksController < ApplicationController
       @bookmark.bookmarkable_type = @list.list_type == 'movie' ? 'Movie' : 'Person'
     elsif @movie
       @bookmark.bookmarkable_type = 'Movie'
+    elsif @person
+      @bookmark.bookmarkable_type = 'Person'
     end
     authorize @bookmark
   end
@@ -32,15 +35,14 @@ class BookmarksController < ApplicationController
       @bookmark = Bookmark.new(bookmark_params)
       @bookmark.movie = @movie
       @list = @bookmark.list
+    elsif @person
+      @bookmark = Bookmark.new(bookmark_params)
+      @bookmark.person = @person
+      @list = @bookmark.list
     end
     authorize @bookmark
     @bookmark.save ? (redirect_to list_path(@list)) : (render :new, status: :unprocessable_entity)
   end
-
-  # def show
-  #   @bookmark = Bookmark.find(params[:id])
-  #   authorize @bookmark
-  # end
 
   def destroy
     @bookmark = Bookmark.find(params[:id])
@@ -57,6 +59,10 @@ class BookmarksController < ApplicationController
 
   def find_movie
     @movie = Movie.find(params[:movie_id]) if params[:movie_id]
+  end
+
+  def find_person
+    @person = Person.find(params[:person_id]) if params[:person_id]
   end
 
   def save_movie(movie_hash)

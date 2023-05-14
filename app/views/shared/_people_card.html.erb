@@ -5,6 +5,9 @@
       <div class="person-card-infos">
         <h2><%= person.name %></h2>
       </div>
+      <%= link_to new_person_bookmark_path(person), class: "btn-round right-corner" do %>
+        <i class="fa-solid fa-circle-plus"></i>
+      <% end %>
     </div>
   <% end %>
 </div>
