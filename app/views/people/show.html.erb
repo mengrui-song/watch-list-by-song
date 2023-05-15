@@ -1,13 +1,17 @@
-<h1>This is show page for a person</h1>
-<h3>Movies as crew</h3>
-<div class="movie-cards">
-<% @movies_as_crew.each do |movie| %>
-<%= render "shared/movie_card", movie: movie %>
-<% end %>
+<div class="container">
+  <h1><%= @person.name %></h1>
+  <button class="btn btn-primary" id="show-cast">
+    Cast
+  </button>
+  <button class="btn btn-secondary" id="show-crew">
+    Crew
+  </button>
+  <div id="collapse-cast">
+    <%= render "shared/movie_cards", movies: @movies_as_cast %>
+  </div>
+  <div class="d-none" id="collapse-crew">
+    <%= render "shared/movie_cards", movies: @movies_as_crew %>
+  </div>
 </div>
-<h3>Movies as cast</h3>
-<div class="movie-cards">
-<% @movies_as_cast.each do |movie| %>
-  <%= render "shared/movie_card", movie: movie %>
-<% end %>
-</div>
+
+<%= javascript_include_tag 'collapse' %>

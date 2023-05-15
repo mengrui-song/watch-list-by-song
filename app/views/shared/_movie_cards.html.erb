@@ -1,0 +1,14 @@
+<div class="movie-cards">
+  <% movies.each do |movie| %>
+    <div class="movie-card">
+      <%= movie.poster_url ? image_tag(movie.poster_url) : image_tag('picture_not_found') %>
+      <div class="movie-card-infos">
+          <h2 class="movie-card-rating"><%= movie.rating%></h2>
+          <h2><%= movie.title %></h2>
+      </div>
+      <%= link_to new_movie_bookmark_path(movie), class: "btn-round right-corner" do %>
+        <i class="fa-solid fa-circle-plus"></i>
+      <% end %>
+    </div>
+  <% end %>
+</div>
