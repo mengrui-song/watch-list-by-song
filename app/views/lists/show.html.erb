@@ -1,4 +1,3 @@
-<%= render "shared/navbar", list: @list%>
 <div class="banner" style="background-image: url(<%= @list.photo.attached? ? cl_image_path(@list.photo.key) : @list.image_url %>);">
   <div class="container">
     <h1><%= @list.name %></h1>

@@ -1,9 +1,9 @@
-<%= render "shared/navbar"%>
 <div class="container text-white mt-3 p-3 bg-dark">
+<p>create a <%= params[:list_type] %> list</p>
   <%= simple_form_for(@list) do |f| %>
     <%= f.input :name %>
     <%= f.input :photo, as: :file %>
-    <%= f.input :list_type, collection: ['movie', 'person'] %>
+    <%= f.input :list_type, label: false, input_html: {value: params[:list_type], class: "d-none"}%>
     <%= f.submit 'Add List', class: "btn btn-outline-light" %>
   <% end %>
 </div>

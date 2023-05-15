@@ -1,4 +1,7 @@
 class ListsController < ApplicationController
+
+  IMAGE_URL = "https://picsum.photos/200/300"
+
   def index
     @lists = policy_scope(List) # policy is for index and I dont need aurhorize because of policy.
   end
@@ -21,6 +24,7 @@ class ListsController < ApplicationController
 
   def create
     @list = List.new(list_params)
+    @list.image_url = IMAGE_URL if list_params[:image_url].nil?
     authorize @list
     @list.user = current_user
     if @list.save

@@ -1,5 +1,3 @@
-
-<%= render "shared/navbar"%>
 <div class="container text-white mt-3 p-3 bg-dark">
   <% if @movie || (@list && @list.list_type == 'movie') %>
     <%= render "form_for_movie", list: @list, bookmark: @bookmark, movie: @movie %>
