@@ -3,7 +3,7 @@
     <% bookmark = Bookmark.find_by(list: list, person: person) %>
     <div class="person-card">
       <%= link_to '', person_path(person), class: 'link-card'  %>
-      <img src="<%= person.profile_url %>" alt="<%= person.name %>">
+      <%= person.profile_url ? image_tag(person.profile_url) : image_tag('picture_not_found') %>
       <div class="person-card-infos">
         <h2><%= person.name %></h2>
       </div>

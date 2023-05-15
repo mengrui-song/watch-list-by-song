@@ -1,5 +1,17 @@
-<h1><%=@movie.title%></h1>
-<h1>Cast</h1>
-<%= render 'shared/people_card', people: @people_as_cast %>
-<h1>Crew</h1>
-<%= render 'shared/people_card', people: @people_as_crew %>
+<div class="container">
+  <h1><%=@movie.title%></h1>
+  <button class="btn btn-primary" id="show-cast">
+    Cast
+  </button>
+  <button class="btn btn-secondary" id="show-crew">
+    Crew
+  </button>
+  <div id="collapse-cast">
+      <%= render 'shared/people_card', people: @people_as_cast %>
+  </div>
+  <div class = "d-none"id="collapse-crew">
+      <%= render 'shared/people_card', people: @people_as_crew %>
+  </div>
+</div>
+
+<%= javascript_include_tag 'collapse' %>

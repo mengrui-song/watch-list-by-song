@@ -1,7 +1,7 @@
 <div class="person-cards">
   <% people.each do |person| %>
     <div class="person-card">
-      <img src="<%= person.profile_url %>" alt="<%= person.name %>">
+      <%= person.profile_url ? image_tag(person.profile_url) : image_tag('picture_not_found') %>
       <div class="person-card-infos">
         <h2><%= person.name %></h2>
       </div>
