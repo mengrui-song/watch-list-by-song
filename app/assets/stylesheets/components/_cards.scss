@@ -46,17 +46,23 @@
 }
 
 .person-card > img, .movie-card > img{
+  padding-top: 8px;
   height: 200px;
   width: 100%;
   object-fit: contain;
   object-position: 50% 50%;
 }
 
-.person-card-infos, .movie-card-infos{
+.movie-card-infos{
   padding: 16px;
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
+
+}
+.person-card-infos{
+  padding: 16px;
+  text-align: center;
 
 }
 
