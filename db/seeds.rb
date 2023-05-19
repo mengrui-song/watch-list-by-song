@@ -68,11 +68,12 @@ def create_person_instance(data)
     # puts person_hash['id']
     # puts person_hash['known_for_department']
     # puts 'https://image.tmdb.org/t/p/w500' + person_hash['profile_path']
+    profile_url = "https://image.tmdb.org/t/p/w500#{person_hash['profile_path']}" unless person_hash['profile_path'].nil?
     person = Person.create!(
       name: person_hash['name'],
       tmdb_person_id: person_hash['id'],
       department: person_hash['known_for_department'],
-      profile_url: 'https://image.tmdb.org/t/p/w500' + person_hash['profile_path']
+      profile_url: profile_url
     )
     result << person
   end
