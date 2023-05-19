@@ -1,9 +1,12 @@
 <div class="person-cards">
   <% people.each do |person| %>
+  <% movie_crew = MovieCrew.where(movie: movie, person: person).first %>
+  <% job = type == 'cast' ? 'Charactor' : 'Job' %>
     <div class="person-card">
       <%= person.profile_url ? image_tag(person.profile_url) : image_tag('picture_not_found') %>
       <div class="person-card-infos">
         <h2><%= person.name %></h2>
+        <p><%= job %>: <%= movie_crew.job_type %></p>
       </div>
       <%= link_to new_person_bookmark_path(person), class: "btn-round right-corner" do %>
         <i class="fa-solid fa-circle-plus"></i>
