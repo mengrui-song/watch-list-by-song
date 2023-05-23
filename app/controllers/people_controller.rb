@@ -32,9 +32,9 @@ class PeopleController < ApplicationController
         title: movie_info['title'],
         overview: movie_info['overview'],
         poster_url: poster_url,
-        rating: movie_info['vote_average']
+        rating: movie_info['vote_average'].floor(1)
       }
-      movie_instance = Movie.find_by(movie_hash) || Movie.create(movie_hash)
+      movie_instance = Movie.find_by(tmdb_id: movie_hash[:tmdb_id]) || Movie.create(movie_hash)
       @person = Person.find(params[:id])
       MovieCrew.find_by(person: @person, movie: movie_instance) || MovieCrew.create(person: @person, movie: movie_instance, job_type: job)
       result << movie_instance
