@@ -16,7 +16,7 @@
 <% elsif person %>
   <%= simple_form_for [person, bookmark] do |f| %>
       <%#= f.input :comment  %>
-      <%= f.association :list, collection: List.where(list_type: 'person').where.not(id: person.lists).order(:name), include_blank: false, input_html: { class: '' } %>
+      <%= f.association :list, collection: current_user.lists.where(list_type: 'person').where.not(id: person.lists).order(:name), include_blank: false, input_html: { class: '' } %>
       <%= f.submit 'Add', class: "btn btn-outline-light add-movie", style: "display: none;" %>
   <% end %>
 <% end %>
